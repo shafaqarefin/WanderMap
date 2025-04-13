@@ -10,16 +10,10 @@ Countries Visited Tracker: View a summary of all the countries you’ve visited.
 
 Mark Locations Easily: Simply click anywhere on the map to add a new pin, and instantly log the place with your notes. The application is built for ease of use, so adding new places takes just a few clicks.
 
-Responsive Design: WanderMap is designed to be responsive, which means it works seamlessly on any device – whether you’re on a desktop, tablet, or smartphone, you can access and update your travel history anytime, anywhere.
-
 Technologies Used
 React: The frontend of WanderMap is built using React, allowing for a dynamic and responsive user interface.
 
 React Router: Used to manage the navigation and routing within the application, enabling different views like the map, countries visited, and the detailed notes page.
-
-Leaflet.js: This powerful JavaScript library is used for rendering the interactive map, allowing you to place and manage markers (pins) on it with ease.
-
-LocalStorage: Used to persist your data across sessions, ensuring that your visited locations and notes remain intact even after refreshing the page or revisiting the app later.
 
 Vite: The project is bootstrapped with Vite for fast and efficient development, leveraging modern JavaScript features and optimal performance.
 
