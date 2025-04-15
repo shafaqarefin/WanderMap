@@ -1,7 +1,6 @@
 import styles from "./AppNav.module.css";
-
 function AppNav() {
-  return <nav className={styles.nav}>AppNav</nav>;
+  return <div> App</div>;
 }
 
 export default AppNav;
