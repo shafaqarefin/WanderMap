@@ -31,6 +31,7 @@ function Form() {
     function () {
       async function fetchCountryFromPosition() {
         try {
+          if (!lat && !lng) return;
           setGeoPosLoading(true);
           setGeoPosError("");
           const res = await fetch(
@@ -56,6 +57,8 @@ function Form() {
   );
   if (geoPosLoading) return <Spinner />;
   if (geoPosError) return <Message message={geoPosError} />;
+  if (!lat && !lng)
+    return <Message message={"Start By Clicking on the Map 👆"} />;
 
   return (
     <form className={styles.form}>
