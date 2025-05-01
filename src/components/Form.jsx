@@ -1,10 +1,13 @@
 // "https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=0&longitude=0"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "./Form.module.css";
 import Button from "./Button";
 import BackButton from "./BackButton";
+import useURLPosition from "../hooks/useURLPosition";
+import Message from "./Message";
+import Spinner from "./Spinner";
 
 export function convertToEmoji(countryCode) {
   const codePoints = countryCode
@@ -13,12 +16,46 @@ export function convertToEmoji(countryCode) {
     .map((char) => 127397 + char.charCodeAt());
   return String.fromCodePoint(...codePoints);
 }
-
+const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 function Form() {
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
+  const [lat, lng] = useURLPosition();
+  const [geoPosLoading, setGeoPosLoading] = useState(false);
+  const [geoPosError, setGeoPosError] = useState("");
+  const [emoji, setEmoji] = useState("");
+
+  useEffect(
+    function () {
+      async function fetchCountryFromPosition() {
+        try {
+          setGeoPosLoading(true);
+          setGeoPosError("");
+          const res = await fetch(
+            `${BASE_URL}?latitude=${lat}&longitude=${lng}`
+          );
+          const data = await res.json();
+          if (!data.countryName) {
+            throw new Error("Please Select a Country Please");
+          }
+          setCityName(data.city || data.locality || "");
+          setCountry(data.countryName);
+          setEmoji(convertToEmoji(data.countryCode));
+        } catch (error) {
+          setGeoPosError(error.message);
+        } finally {
+          setGeoPosLoading(false);
+        }
+      }
+      fetchCountryFromPosition();
+    },
+
+    [lat, lng]
+  );
+  if (geoPosLoading) return <Spinner />;
+  if (geoPosError) return <Message message={geoPosError} />;
 
   return (
     <form className={styles.form}>
@@ -29,7 +66,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        {/* <span className={styles.flag}>{emoji}</span> */}
+        <span className={styles.flag}>{emoji}</span>
       </div>
 
       <div className={styles.row}>
