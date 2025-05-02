@@ -36,7 +36,7 @@ function AuthProvider({ children }) {
     dispatch({ type: "logout" });
   }
   return (
-    <AuthContext.Provider value={(login, logout, user, isAuthenticated)}>
+    <AuthContext.Provider value={{ login, logout, isAuthenticated, user }}>
       {children}
     </AuthContext.Provider>
   );
