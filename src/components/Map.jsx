@@ -53,7 +53,10 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {cities.map((city) => (
-          <Marker position={[city.position.lat, city.position.lng]}>
+          <Marker
+            key={city.id}
+            position={[city.position.lat, city.position.lng]}
+          >
             <Popup>
               <span>{city.cityName}</span>
               <span>{city.emoji}</span>
