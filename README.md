@@ -3,6 +3,7 @@ WanderMap is an interactive web application built to help you visually track you
 
 Features
 Map-Based Interface: With an interactive world map, you can easily add pins to mark locations you’ve visited. The map is designed to give you a visual representation of your travel experiences in a user-friendly and immersive way.
+![image](https://github.com/user-attachments/assets/26c858b1-c101-4df6-87a7-b6010ff0ae25)
 
 Personalized Notes: For each marked location, you can write and store personal notes. Whether it’s a memorable experience, a list of things to do, or special moments you want to remember, you can attach them to specific locations on the map.
 
