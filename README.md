@@ -9,7 +9,10 @@ Personalized Notes: For each marked location, you can write and store personal n
 
 Countries Visited Tracker: View a summary of all the countries you’ve visited. The app helps you keep track of your travels and see your global footprint grow over time.
 
+Use your location button allowsd you to find yourself on the map
+
 Mark Locations Easily: Simply click anywhere on the map to add a new pin, and instantly log the place with your notes. The application is built for ease of use, so adding new places takes just a few clicks.
+![image](https://github.com/user-attachments/assets/dd5e1d98-6712-4d06-b08b-9825d41daf06)
 
 Technologies Used
 React: The frontend of WanderMap is built using React, allowing for a dynamic and responsive user interface.
