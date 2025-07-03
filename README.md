@@ -1,6 +1,5 @@
 WanderMap - Your Travel Journey on the Map
 WanderMap is an interactive web application built to help you visually track your travel journey across the globe. Whether you're an avid traveler or just exploring new places, WanderMap allows you to mark the locations you’ve visited, take personal notes about each place, and view a global map with all your travels visually represented. It’s the perfect tool for reflecting on your adventures and remembering your favorite destinations.
-![image](https://github.com/user-attachments/assets/cc050b10-2ab3-45bb-ba99-7e74d251fdb0)
 
 Features
 Map-Based Interface: With an interactive world map, you can easily add pins to mark locations you’ve visited. The map is designed to give you a visual representation of your travel experiences in a user-friendly and immersive way.
