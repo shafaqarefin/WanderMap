@@ -1,8 +1,10 @@
 import { useCallback } from "react";
 import { createContext, useContext, useEffect, useReducer } from "react";
+import { createCity, getCitiesByUserId } from "../services/apiCities";
+import { useAuth } from "./AuthContext";
+
 const BASE_URL = "http://localhost:8000";
 const CitiesContext = createContext();
-
 const initialState = {
   isLoading: false,
   cities: [],
@@ -15,6 +17,7 @@ function reducer(state, action) {
       throw new Error("Unknown Action");
 
     case "cities/loaded":
+      console.log(action.payload);
       return { ...state, isLoading: false, cities: action.payload };
 
     case "city/loaded":
@@ -44,24 +47,28 @@ function reducer(state, action) {
 }
 
 function CitiesProvider({ children }) {
+  const { user, isAuthenticated } = useAuth();
   const [{ cities, currentCity, isLoading }, dispatch] = useReducer(
     reducer,
     initialState
   );
 
-  useEffect(function () {
+  useEffect(() => {
+    if (!isAuthenticated || !user?.id) return;
+
     async function fetchCities() {
+      dispatch({ type: "loading" });
+
       try {
-        dispatch({ type: "loading" });
-        const res = await fetch(`${BASE_URL}/cities`);
-        const data = await res.json();
-        dispatch({ type: "cities/loaded", payload: data });
-      } catch (error) {
-        alert(`Error: ${error}`);
+        const cities = await getCitiesByUserId(user.id); // from apiCities.js
+        dispatch({ type: "cities/loaded", payload: cities });
+      } catch (err) {
+        dispatch({ type: "error", payload: err.message });
       }
     }
+
     fetchCities();
-  }, []);
+  }, [isAuthenticated, user?.id]);
 
   const getCityById = useCallback(
     async function getCityById(id) {
@@ -84,17 +91,13 @@ function CitiesProvider({ children }) {
   async function createNewCity(newCity) {
     try {
       dispatch({ type: "loading" });
-      const res = await fetch(`${BASE_URL}/cities`, {
-        method: "POST",
-        body: JSON.stringify(newCity),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await res.json();
+
+      const cityWithUser = { ...newCity, user_id: user?.id };
+
+      const data = await createCity(cityWithUser);
       dispatch({ type: "city/created", payload: data });
     } catch (error) {
-      alert(`Error: ${error}`);
+      alert(`Error: ${error.message || error}`);
     }
   }
 
