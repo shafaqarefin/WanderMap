@@ -1,6 +1,11 @@
 import { useCallback } from "react";
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { createCity, getCitiesByUserId } from "../services/apiCities";
+import {
+  createCity,
+  fetchCityById,
+  getCitiesByUserId,
+  deleteCityApi,
+} from "../services/apiCities";
 import { useAuth } from "./AuthContext";
 
 const BASE_URL = "http://localhost:8000";
@@ -78,17 +83,17 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
 
       try {
-        const res = await fetch(`${BASE_URL}/cities/${id}`);
-        const data = await res.json();
+        const data = await fetchCityById(id);
         dispatch({ type: "city/loaded", payload: data });
       } catch (error) {
-        alert(`Error: ${error}`);
+        alert(`Error: ${error.message || error}`);
+        dispatch({ type: "error", payload: error }); //
       }
     },
     [currentCity.id]
   );
 
-  async function createNewCity(newCity) {
+  const createNewCity = async (newCity) => {
     try {
       dispatch({ type: "loading" });
 
@@ -99,18 +104,16 @@ function CitiesProvider({ children }) {
     } catch (error) {
       alert(`Error: ${error.message || error}`);
     }
-  }
+  };
 
-  async function deleteCity(id) {
+  const deleteCity = async (id) => {
     try {
-      await fetch(`${BASE_URL}/cities/${id}`, {
-        method: "DELETE",
-      });
+      await deleteCityApi(id);
       dispatch({ type: "city/deleted", payload: id });
     } catch (error) {
       alert(`Error: ${error}`);
     }
-  }
+  };
 
   return (
     <CitiesContext.Provider
