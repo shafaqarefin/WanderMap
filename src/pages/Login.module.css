@@ -25,8 +25,9 @@
   gap: 0.5rem;
 }
 
-.btn-layout {
+.btnLayout {
   display: flex;
-  justify-content: space-between;
-  gap: 15rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: stretch;
 }
