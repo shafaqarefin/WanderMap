@@ -42,7 +42,7 @@ function Form() {
           setGeoPosLoading(true);
           setGeoPosError("");
           const res = await fetch(
-            `${BASE_URL}?latitude=${String(lat)}&longitude=${String(lng)}`
+            `${BASE_URL}?latitude=${lat}&longitude=${lng}`
           );
           const data = await res.json();
           if (!data.countryName) {
