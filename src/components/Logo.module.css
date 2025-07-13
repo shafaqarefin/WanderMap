@@ -1,3 +1,16 @@
 .logo {
-  height: 5.2rem;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logoText {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  letter-spacing: -1px;
+}
+
+.map {
+  color: #ff6b6b; /* accent color for "Map" */
 }
