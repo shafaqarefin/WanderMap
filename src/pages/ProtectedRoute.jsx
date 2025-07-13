@@ -6,14 +6,13 @@ import Spinner from "../components/Spinner";
 function ProtectedRoute({ children }) {
   const { isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
-  console.log(isAuthenticated);
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
       navigate("/");
     }
   }, [isLoading, isAuthenticated, navigate]);
 
-  if (isLoading) return <Spinner />; // Or a spinner
+  if (isLoading) return <Spinner />;
 
   return isAuthenticated ? children : null;
 }

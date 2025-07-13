@@ -50,12 +50,12 @@ export default function Login() {
 
         <div className="btn-layout">
           <Button type={"primary"}>Login</Button>
+          <Button onClick={() => googleLogin()} type={"primary"}>
+            <FaGoogle style={{ marginRight: "8px" }} />
+            Continue with Google
+          </Button>
         </div>
       </form>
-      <Button onClick={() => googleLogin()} type={"primary"}>
-        <FaGoogle style={{ marginRight: "8px" }} />
-        Continue with Google
-      </Button>
     </main>
   );
 }
