@@ -3,13 +3,16 @@ import styles from "./Login.module.css";
 import Button from "../components/Button";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
+
 export default function Login() {
   // PRE-FILL FOR DEV PURPOSES
-  const [email, setEmail] = useState("jack@example.com");
-  const [password, setPassword] = useState("qwerty");
-  const { login, isAuthenticated } = useAuth();
+  const [email, setEmail] = useState("test@example.com");
+  const [password, setPassword] = useState("abcd");
+  const { login, isAuthenticated, googleLogin } = useAuth();
   const navigate = useNavigate();
 
+  console.log(isAuthenticated);
   function handleSubmitLoginForm(e) {
     e.preventDefault();
     if (email && password) login(email, password);
@@ -45,10 +48,14 @@ export default function Login() {
           />
         </div>
 
-        <div>
+        <div className="btn-layout">
           <Button type={"primary"}>Login</Button>
         </div>
       </form>
+      <Button onClick={() => googleLogin()} type={"primary"}>
+        <FaGoogle style={{ marginRight: "8px" }} />
+        Continue with Google
+      </Button>
     </main>
   );
 }
