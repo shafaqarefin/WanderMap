@@ -24,3 +24,9 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.btn-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 15rem;
+}
