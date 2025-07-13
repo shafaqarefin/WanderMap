@@ -46,7 +46,7 @@ function Form() {
           );
           const data = await res.json();
           if (!data.countryName) {
-            throw new Error("Please Select a Country Please");
+            throw new Error("Please Select a Country Bitch");
           }
           setCityName(data.city || data.locality || "");
           setCountry(data.countryName);
