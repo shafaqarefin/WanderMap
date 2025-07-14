@@ -65,7 +65,7 @@ function CitiesProvider({ children }) {
       dispatch({ type: "loading" });
 
       try {
-        const cities = await getCitiesByUserId(user.id); // from apiCities.js
+        const cities = await getCitiesByUserId(user.id);
         dispatch({ type: "cities/loaded", payload: cities });
       } catch (err) {
         dispatch({ type: "error", payload: err.message });
