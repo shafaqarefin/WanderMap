@@ -14,7 +14,7 @@ import Button from "./Button";
 import { useGeolocation } from "../hooks/useGeolocation";
 import useURLPosition from "../hooks/useURLPosition";
 function Map() {
-  const [mapPosition, setMapPosition] = useState([40, 0]);
+  const [mapPosition, setMapPosition] = useState([23, 90]);
   const { cities } = useCities();
   const {
     isLoading: isLoadingPosition,
@@ -44,7 +44,7 @@ function Map() {
       </Button>
       <MapContainer
         center={mapPosition}
-        zoom={23}
+        zoom={10}
         scrollWheelZoom={true}
         className={styles.map}
       >
