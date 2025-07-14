@@ -50,9 +50,11 @@ export default function Login() {
 
         <div className={styles.btnLayout}>
           <Button
-            onClick={() => googleLogin()}
-            type={"primary"}
-            htmlType="button"
+            onClick={(e) => {
+              e.preventDefault();
+              googleLogin();
+            }}
+            type="primary"
           >
             <FaGoogle style={{ marginRight: "8px" }} />
             Continue with Google
